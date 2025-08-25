@@ -1,0 +1,1510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIM Tracker - Enhanced Dark Professional</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: #1a1a1a;
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(0, 122, 204, 0.1) 1px, transparent 1px),
+                radial-gradient(circle at 75% 75%, rgba(0, 212, 255, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            background-attachment: fixed;
+            animation: backgroundDrift 20s ease-in-out infinite;
+            margin: 0;
+            padding: 20px;
+            color: #e0e0e0;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        @keyframes backgroundDrift {
+            0%, 100% { background-position: 0% 0%; }
+            25% { background-position: 100% 0%; }
+            50% { background-position: 100% 100%; }
+            75% { background-position: 0% 100%; }
+        }
+
+        /* Animated tech lines */
+        .tech-line {
+            position: fixed;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #007acc, transparent);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .tech-line-1 {
+            top: 20%;
+            width: 200px;
+            animation: techLine1 8s ease-in-out infinite;
+        }
+
+        .tech-line-2 {
+            top: 60%;
+            width: 150px;
+            animation: techLine2 6s ease-in-out infinite reverse;
+        }
+
+        .tech-line-3 {
+            top: 80%;
+            width: 180px;
+            animation: techLine3 10s ease-in-out infinite;
+        }
+
+        @keyframes techLine1 {
+            0%, 100% { left: -200px; opacity: 0; }
+            50% { left: calc(100% - 200px); opacity: 1; }
+        }
+
+        @keyframes techLine2 {
+            0%, 100% { right: -150px; opacity: 0; }
+            50% { right: calc(100% - 150px); opacity: 1; }
+        }
+
+        @keyframes techLine3 {
+            0%, 100% { left: -180px; opacity: 0; transform: scaleX(0); }
+            50% { left: calc(50% - 90px); opacity: 1; transform: scaleX(1); }
+        }
+
+        /* Floating data particles */
+        .data-particle {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: #00d4ff;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: -1;
+            animation: dataFloat 15s linear infinite;
+        }
+
+        .particle-1 { left: 10%; animation-delay: 0s; }
+        .particle-2 { left: 30%; animation-delay: 3s; }
+        .particle-3 { left: 50%; animation-delay: 6s; }
+        .particle-4 { left: 70%; animation-delay: 9s; }
+        .particle-5 { left: 90%; animation-delay: 12s; }
+
+        @keyframes dataFloat {
+            0% { 
+                transform: translateY(100vh) rotate(0deg); 
+                opacity: 0; 
+                box-shadow: 0 0 0 #00d4ff; 
+            }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { 
+                transform: translateY(-100px) rotate(360deg); 
+                opacity: 0; 
+                box-shadow: 0 0 20px #00d4ff; 
+            }
+        }
+
+        .container { 
+            max-width: 1400px; 
+            margin: 0 auto; 
+            position: relative;
+            z-index: 1;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+            animation: headerSlideDown 1s ease-out;
+        }
+
+        @keyframes headerSlideDown {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .header h1 {
+            font-size: 3.5em;
+            font-weight: 900;
+            color: #ffffff;
+            margin: 0;
+            position: relative;
+            display: inline-block;
+            animation: titlePulse 3s ease-in-out infinite;
+        }
+
+        @keyframes titlePulse {
+            0%, 100% { 
+                transform: scale(1); 
+                text-shadow: 0 0 20px rgba(0, 122, 204, 0.5); 
+            }
+            50% { 
+                transform: scale(1.02); 
+                text-shadow: 0 0 30px rgba(0, 212, 255, 0.8), 0 0 60px rgba(0, 122, 204, 0.3); 
+            }
+        }
+
+        .header h1::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, #007acc, #00d4ff, #007acc, transparent);
+            background-size: 200% 100%;
+            animation: underlineFlow 3s ease-in-out infinite;
+        }
+
+        @keyframes underlineFlow {
+            0%, 100% { background-position: -100% 0; }
+            50% { background-position: 100% 0; }
+        }
+
+        .nav-tabs {
+            display: flex;
+            background: #2d2d2d;
+            border-radius: 15px;
+            padding: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            border: 1px solid #404040;
+            position: relative;
+            overflow: hidden;
+            animation: navSlideUp 1.2s ease-out;
+        }
+
+        @keyframes navSlideUp {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .nav-tabs::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #007acc, #00d4ff, #007acc);
+            background-size: 200% 100%;
+            animation: navTopGlow 4s ease-in-out infinite;
+        }
+
+        @keyframes navTopGlow {
+            0%, 100% { background-position: -100% 0; }
+            50% { background-position: 100% 0; }
+        }
+
+        .nav-tab {
+            flex: 1;
+            padding: 18px 30px;
+            background: transparent;
+            border: none;
+            border-radius: 10px;
+            color: #b0b0b0;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 600;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-tab::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 122, 204, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .nav-tab:hover::before {
+            left: 100%;
+        }
+
+        .nav-tab.active {
+            background: linear-gradient(135deg, #007acc, #0099ff);
+            color: white;
+            box-shadow: 0 4px 15px rgba(0, 122, 204, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .nav-tab:hover {
+            transform: translateY(-3px);
+            color: #ffffff;
+            background: rgba(0, 122, 204, 0.1);
+        }
+
+        .nav-tab.active:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 122, 204, 0.6);
+        }
+
+        .tab-content {
+            background: rgba(45, 45, 45, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            min-height: 600px;
+            border: 1px solid #404040;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .tab-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #007acc, #00d4ff, #007acc, transparent);
+            background-size: 200% 100%;
+            animation: contentTopGlow 5s ease-in-out infinite;
+        }
+
+        @keyframes contentTopGlow {
+            0%, 100% { background-position: -100% 0; }
+            50% { background-position: 100% 0; }
+        }
+
+        .tab-panel {
+            display: none;
+            padding: 40px;
+            animation: panelFadeIn 0.6s ease-out;
+        }
+
+        .tab-panel.active {
+            display: block;
+        }
+
+        @keyframes panelFadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .sim-header {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .sim-header h1 {
+            color: #ffffff;
+            font-size: 3em;
+            margin-bottom: 15px;
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            animation: simTitleGlow 4s ease-in-out infinite;
+        }
+
+        @keyframes simTitleGlow {
+            0%, 100% { 
+                color: #ffffff;
+                text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+            }
+            50% { 
+                color: #00d4ff;
+                text-shadow: 0 0 30px rgba(0, 212, 255, 0.6);
+            }
+        }
+
+        .form-section {
+            background: #2d2d2d;
+            border-radius: 18px;
+            padding: 35px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            border: 1px solid #404040;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            animation: sectionSlideIn 0.8s ease-out forwards;
+            opacity: 0;
+            transform: translateX(-50px);
+        }
+
+        .form-section:nth-child(even) {
+            animation: sectionSlideInRight 0.8s ease-out forwards;
+            transform: translateX(50px);
+        }
+
+        .form-section:nth-child(1) { animation-delay: 0.1s; }
+        .form-section:nth-child(2) { animation-delay: 0.2s; }
+        .form-section:nth-child(3) { animation-delay: 0.3s; }
+        .form-section:nth-child(4) { animation-delay: 0.4s; }
+        .form-section:nth-child(5) { animation-delay: 0.5s; }
+
+        @keyframes sectionSlideIn {
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes sectionSlideInRight {
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .form-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #007acc, #00d4ff, transparent);
+            transition: left 0.8s ease;
+        }
+
+        .form-section:hover::before {
+            left: 100%;
+        }
+
+        .form-section:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 122, 204, 0.2);
+            border-color: #007acc;
+        }
+
+        .section-title {
+            color: #ffffff;
+            font-size: 1.8em;
+            font-weight: 700;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            position: relative;
+        }
+
+        .section-title::before {
+            content: '';
+            width: 8px;
+            height: 30px;
+            background: linear-gradient(135deg, #007acc, #00d4ff);
+            border-radius: 4px;
+            animation: titleIndicator 3s ease-in-out infinite;
+        }
+
+        @keyframes titleIndicator {
+            0%, 100% { transform: scaleY(1); opacity: 1; }
+            50% { transform: scaleY(1.2); opacity: 0.8; }
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .form-row, .form-row-2, .form-row-3, .form-row-4 {
+            display: grid;
+            gap: 25px;
+            margin-bottom: 20px;
+        }
+
+        .form-row { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+        .form-row-2 { grid-template-columns: 1fr 1fr; }
+        .form-row-3 { grid-template-columns: 1fr 1fr 1fr; }
+        .form-row-4 { grid-template-columns: 1fr 1fr 1fr 1fr; }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #e0e0e0;
+            font-weight: 600;
+            font-size: 1em;
+            transition: color 0.3s ease;
+        }
+
+        .required {
+            color: #ff4757;
+            font-weight: bold;
+            margin-left: 3px;
+            animation: requiredBlink 2s infinite;
+        }
+
+        @keyframes requiredBlink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
+        }
+
+        input[type="text"],
+        input[type="number"],
+        input[type="date"],
+        input[type="email"],
+        select {
+            width: 100%;
+            padding: 16px 20px;
+            background: #404040;
+            border: 2px solid #555;
+            border-radius: 12px;
+            color: #e0e0e0;
+            font-family: 'Roboto', sans-serif;
+            font-size: 1em;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+
+        input[type="text"]::placeholder,
+        input[type="number"]::placeholder,
+        input[type="email"]::placeholder {
+            color: #888;
+            transition: color 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        input[type="date"]:focus,
+        input[type="email"]:focus,
+        select:focus {
+            outline: none;
+            border-color: #007acc;
+            background: #4a4a4a;
+            box-shadow: 0 0 0 4px rgba(0, 122, 204, 0.1);
+            transform: translateY(-3px) scale(1.02);
+        }
+
+        input[type="text"]:focus::placeholder,
+        input[type="number"]:focus::placeholder,
+        input[type="email"]:focus::placeholder {
+            color: #aaa;
+        }
+
+        select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23e0e0e0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 15px center;
+            background-size: 20px;
+            padding-right: 50px;
+        }
+
+        select option {
+            background: #2d2d2d;
+            color: #e0e0e0;
+            padding: 10px;
+        }
+
+        /* Hidden fields animation */
+        .price-error-fields, .syska-fields, .concessions-fields {
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+
+        .price-error-fields.show, .syska-fields.show, .concessions-fields.show {
+            max-height: 2000px;
+            opacity: 1;
+            margin-top: 25px;
+            transform: translateY(0);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(135deg, #007acc, #0099ff);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-family: 'Roboto', sans-serif;
+            font-weight: 700;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .submit-btn:hover::before {
+            left: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 12px 35px rgba(0, 122, 204, 0.4);
+            background: linear-gradient(135deg, #0099ff, #00d4ff);
+        }
+
+        .submit-btn:active {
+            transform: translateY(-2px) scale(1.01);
+        }
+
+        .success-message {
+            background: linear-gradient(135deg, #2ed573, #1dd1a1);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            display: none;
+            font-weight: 600;
+            box-shadow: 0 8px 25px rgba(46, 213, 115, 0.3);
+            animation: messageSlideIn 0.5s ease-out;
+            border: 1px solid rgba(46, 213, 115, 0.3);
+        }
+
+        .error-message {
+            background: linear-gradient(135deg, #ff4757, #ff3838);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            display: none;
+            font-weight: 600;
+            box-shadow: 0 8px 25px rgba(255, 71, 87, 0.3);
+            animation: messageShake 0.5s ease-out;
+            border: 1px solid rgba(255, 71, 87, 0.3);
+        }
+
+        @keyframes messageSlideIn {
+            from { opacity: 0; transform: translateX(-100px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes messageShake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        /* Admin Panel Styles */
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 20px;
+            animation: adminHeaderSlide 1s ease-out;
+        }
+
+        @keyframes adminHeaderSlide {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .admin-header h1 {
+            color: #ffffff;
+            font-size: 2.8em;
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            animation: adminTitleGlow 4s ease-in-out infinite;
+        }
+
+        @keyframes adminTitleGlow {
+            0%, 100% { 
+                color: #ffffff;
+                text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+            }
+            50% { 
+                color: #00d4ff;
+                text-shadow: 0 0 30px rgba(0, 212, 255, 0.6);
+            }
+        }
+
+        .admin-controls {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .admin-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: #2d2d2d;
+            color: #ffffff;
+            padding: 30px;
+            border-radius: 18px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid #404040;
+            position: relative;
+            overflow: hidden;
+            animation: statCardSlideUp 0.8s ease-out forwards;
+            opacity: 0;
+            transform: translateY(50px);
+        }
+
+        .stat-card:nth-child(1) { animation-delay: 0.1s; }
+        .stat-card:nth-child(2) { animation-delay: 0.2s; }
+        .stat-card:nth-child(3) { animation-delay: 0.3s; }
+        .stat-card:nth-child(4) { animation-delay: 0.4s; }
+        .stat-card:nth-child(5) { animation-delay: 0.5s; }
+
+        @keyframes statCardSlideUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #007acc, #00d4ff, #0099ff, #007acc);
+            background-size: 200% 100%;
+            animation: statCardGlow 4s ease-in-out infinite;
+        }
+
+        @keyframes statCardGlow {
+            0%, 100% { background-position: -100% 0; }
+            50% { background-position: 100% 0; }
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 20px 50px rgba(0, 122, 204, 0.3);
+            border-color: #007acc;
+        }
+
+        .stat-number {
+            font-size: 2.8em;
+            font-weight: 900;
+            margin-bottom: 10px;
+            color: #ffffff;
+            font-family: 'JetBrains Mono', monospace;
+            animation: numberCount 2s ease-out;
+        }
+
+        @keyframes numberCount {
+            from { opacity: 0; transform: scale(0.5); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .stat-label {
+            font-size: 1em;
+            font-weight: 600;
+            color: #b0b0b0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .export-btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1em;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: linear-gradient(135deg, #2ed573, #1dd1a1);
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(46, 213, 115, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .export-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .export-btn:hover::before {
+            left: 100%;
+        }
+
+        .export-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(46, 213, 115, 0.4);
+            background: linear-gradient(135deg, #1dd1a1, #55efc4);
+        }
+
+        /* Clear All Data Button */
+        .clear-data-btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 1em;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            background: linear-gradient(135deg, #ff4757, #ff3838);
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(255, 71, 87, 0.3);
+            position: relative;
+            overflow: hidden;
+            margin-left: 15px;
+        }
+
+        .clear-data-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .clear-data-btn:hover::before {
+            left: 100%;
+        }
+
+        .clear-data-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(255, 71, 87, 0.4);
+            background: linear-gradient(135deg, #ff3838, #ff6b7d);
+        }
+
+        /* Loading animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, .3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 10px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* No data message */
+        .no-data-message {
+            text-align: center;
+            color: #888;
+            font-size: 1.2em;
+            padding: 60px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            border: 2px dashed #555;
+            margin-top: 20px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .form-row,
+            .form-row-2,
+            .form-row-3,
+            .form-row-4 {
+                grid-template-columns: 1fr;
+            }
+            
+            .admin-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .admin-controls {
+                justify-content: center;
+            }
+            
+            .header h1 {
+                font-size: 2.5em;
+            }
+            
+            .sim-header h1 {
+                font-size: 2.2em;
+            }
+            
+            .admin-header h1 {
+                font-size: 2.2em;
+            }
+            
+            .container {
+                padding: 15px;
+            }
+            
+            .tab-panel {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated tech lines -->
+    <div class="tech-line tech-line-1"></div>
+    <div class="tech-line tech-line-2"></div>
+    <div class="tech-line tech-line-3"></div>
+
+    <!-- Floating data particles -->
+    <div class="data-particle particle-1"></div>
+    <div class="data-particle particle-2"></div>
+    <div class="data-particle particle-3"></div>
+    <div class="data-particle particle-4"></div>
+    <div class="data-particle particle-5"></div>
+
+    <div class="container">
+        <div class="header">
+            <h1>SIM TRACKER</h1>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="nav-tabs">
+            <button class="nav-tab active" onclick="switchTab('form')">📝 Submit SIM Data</button>
+            <button class="nav-tab" onclick="switchTab('admin')">📊 SIM Records Dashboard</button>
+        </div>
+
+        <!-- Tab Content -->
+        <div class="tab-content">
+            <!-- Form Tab -->
+            <div id="form-tab" class="tab-panel active">
+                <div class="sim-header">
+                    <h1>SIM Tracker</h1>
+                </div>
+
+                <div class="success-message" id="successMessage">
+                    ✅ SIM record has been successfully submitted and saved to the system.
+                </div>
+
+                <div class="error-message" id="errorMessage">
+                    ❌ Please fill out all required fields correctly before submitting.
+                </div>
+
+                <form id="simForm">
+                    <!-- Basic Information Section -->
+                    <div class="form-section">
+                        <h3 class="section-title">Basic Information</h3>
+                        <div class="form-row-4">
+                            <div class="form-group">
+                                <label for="simId">SIM ID <span class="required">*</span></label>
+                                <input type="text" id="simId" name="simId" required placeholder="Enter SIM ID">
+                            </div>
+                            <div class="form-group">
+                                <label for="severity">Severity <span class="required">*</span></label>
+                                <select id="severity" name="severity" required>
+                                    <option value="">Select Severity</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="ou">OU <span class="required">*</span></label>
+                                <select id="ou" name="ou" required>
+                                    <option value="">Select Region</option>
+                                    <option value="US">US - United States</option>
+                                    <option value="CA">CA - Canada</option>
+                                    <option value="BR">BR - Brazil</option>
+                                    <option value="MX">MX - Mexico</option>
+                                    <option value="UK">UK - United Kingdom</option>
+                                    <option value="DE">DE - Germany</option>
+                                    <option value="FR">FR - France</option>
+                                    <option value="ES">ES - Spain</option>
+                                    <option value="IN">IN - India</option>
+                                    <option value="IT">IT - Italy</option>
+                                    <option value="NL">NL - Netherlands</option>
+                                    <option value="TR">TR - Turkey</option>
+                                    <option value="SA">SA - Saudi Arabia</option>
+                                    <option value="SE">SE - Sweden</option>
+                                    <option value="PL">PL - Poland</option>
+                                    <option value="BE">BE - Belgium</option>
+                                    <option value="JP">JP - Japan</option>
+                                    <option value="AU">AU - Australia</option>
+                                    <option value="SG">SG - Singapore</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="loginIdResolver">Login ID of the Resolver <span class="required">*</span></label>
+                                <input type="text" id="loginIdResolver" name="loginIdResolver" placeholder="Resolver Login ID" required>
+                            </div>
+                        </div>
+                        <div class="form-row-2">
+                            <div class="form-group">
+                                <label for="dateCreated">Date Created <span class="required">*</span></label>
+                                <input type="date" id="dateCreated" name="dateCreated" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="resolveDate">Resolve Date <span class="required">*</span></label>
+                                <input type="date" id="resolveDate" name="resolveDate" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Price Error Details Section -->
+                    <div class="form-section">
+                        <h3 class="section-title">Price Error Details</h3>
+                        <div class="form-group">
+                            <label for="priceError">Price Error <span class="required">*</span></label>
+                            <select id="priceError" name="priceError" required onchange="togglePriceErrorFields()">
+                                <option value="">Select Option</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+
+                        <!-- Fields that appear when "Yes" is selected -->
+                        <div class="price-error-fields" id="priceErrorFields">
+                            <div class="form-row-2">
+                                <div class="form-group">
+                                    <label for="promotionalPricingError">Promotional Pricing Error <span class="required">*</span></label>
+                                    <select id="promotionalPricingError" name="promotionalPricingError">
+                                        <option value="">Select Option</option>
+                                        <option value="Yes">Yes</option>
+                                        <option value="No">No</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="pricingErrorDate">Pricing Error Date <span class="required">*</span></label>
+                                    <input type="date" id="pricingErrorDate" name="pricingErrorDate">
+                                </div>
+                            </div>
+
+                            <div class="form-row-3">
+                                <div class="form-group">
+                                    <label for="singleMultipleAsins">Single/Multiple ASINs <span class="required">*</span></label>
+                                    <select id="singleMultipleAsins" name="singleMultipleAsins">
+                                        <option value="">Select Option</option>
+                                        <option value="Single">Single</option>
+                                        <option value="Multiple">Multiple</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="totalOrders">Total Orders <span class="required">*</span></label>
+                                    <input type="number" id="totalOrders" name="totalOrders" min="0" placeholder="0">
+                                </div>
+                                <div class="form-group">
+                                    <label for="totalUnits">Total Units <span class="required">*</span></label>
+                                    <input type="number" id="totalUnits" name="totalUnits" min="0" placeholder="0">
+                                </div>
+                            </div>
+
+                            <div class="form-row-3">
+                                <div class="form-group">
+                                    <label for="cancelledUnits">Cancelled Units <span class="required">*</span></label>
+                                    <input type="number" id="cancelledUnits" name="cancelledUnits" min="0" placeholder="0">
+                                </div>
+                                <div class="form-group">
+                                    <label for="businessImpact">Business Impact in USD <span class="required">*</span></label>
+                                    <input type="number" id="businessImpact" name="businessImpact" min="0" step="0.01" placeholder="0.00">
+                                </div>
+                                <div class="form-group">
+                                    <label for="savingsUsd">Savings in USD <span class="required">*</span></label>
+                                    <input type="number" id="savingsUsd" name="savingsUsd" min="0" step="0.01" placeholder="0.00">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inEfPriceError">IN EF Price Error <span class="required">*</span></label>
+                                <select id="inEfPriceError" name="inEfPriceError">
+                                    <option value="">Select Option</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Record Management Section -->
+                    <div class="form-section">
+                        <h3 class="section-title">Record Management</h3>
+                        <div class="form-row-3">
+                            <div class="form-group">
+                                <label for="totalRecords">Total Records <span class="required">*</span></label>
+                                <input type="number" id="totalRecords" name="totalRecords" min="0" placeholder="0" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="successRecords">Success Records <span class="required">*</span></label>
+                                <input type="number" id="successRecords" name="successRecords" min="0" placeholder="0" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="failedRecords">Failed Records <span class="required">*</span></label>
+                                <input type="number" id="failedRecords" name="failedRecords" min="0" placeholder="0" required>
+                            </div>
+                        </div>
+                        <div class="form-row-3">
+                            <div class="form-group">
+                                <label for="customersNotified">Total No of Customers Notified <span class="required">*</span></label>
+                                <input type="number" id="customersNotified" name="customersNotified" min="0" placeholder="0" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="unSideline">Un-Sideline <span class="required">*</span></label>
+                                <select id="unSideline" name="unSideline" required>
+                                    <option value="">Select Status</option>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                    <option value="N/A">N/A</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="jobType">Job Type <span class="required">*</span></label>
+                                <select id="jobType" name="jobType" required>
+                                    <option value="">Select Job Type</option>
+                                    <option value="Annotate Order by OrderID">Annotate Order by OrderID</option>
+                                    <option value="Annotate and Mail by OrderID">Annotate and Mail by OrderID</option>
+                                    <option value="Apply Promo to CustomerID">Apply Promo to CustomerID</option>
+                                    <option value="Apply Promo and Mail by CustomerID">Apply Promo and Mail by CustomerID</option>
+                                    <option value="Cancel Item from Order">Cancel Item from Order</option>
+                                    <option value="Cancel Items from Order and Mail by OrderID">Cancel Items from Order and Mail by OrderID</option>
+                                    <option value="Cancel Bundle Item From Purchase">Cancel Bundle Item From Purchase</option>
+                                    <option value="Cancel Bundle Item from Purchase and Mail by OrderID">Cancel Bundle Item from Purchase and Mail by OrderID</option>
+                                    <option value="Change Order Condition">Change Order Condition</option>
+                                    <option value="Change Ship Option">Change Ship Option</option>
+                                    <option value="Change Ship Options and Mail by OrderID">Change Ship Options and Mail by OrderID</option>
+                                    <option value="Mail by CustomerID">Mail by CustomerID</option>
+                                    <option value="Mail by OrderID">Mail by OrderID</option>
+                                    <option value="Prime Subscription Extension">Prime Subscription Extension</option>
+                                    <option value="Reduce Item Quantity">Reduce Item Quantity</option>
+                                    <option value="Reduce Item Quantity and Mail by OrderID">Reduce Item Quantity and Mail by OrderID</option>
+                                    <option value="Replace Asin">Replace Asin</option>
+                                    <option value="Replace Complete Shipment">Replace Complete Shipment</option>
+                                    <option value="Replace Complete Shipment and Mail by OrderID">Replace Complete Shipment and Mail by OrderID</option>
+                                    <option value="Resolve Contacts">Resolve Contacts</option>
+                                    <option value="SLICE Cancel Shipments">SLICE Cancel Shipments</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Concessions Section -->
+                        <div class="form-group">
+                            <label for="concessions">Concessions <span class="required">*</span></label>
+                            <select id="concessions" name="concessions" required onchange="toggleConcessionsFields()">
+                                <option value="">Select Option</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+
+                        <!-- Fields that appear when Concessions = "Yes" -->
+                        <div class="concessions-fields" id="concessionsFields">
+                            <div class="form-row-2">
+                                <div class="form-group">
+                                    <label for="concessionJobType">Concession Job Type <span class="required">*</span></label>
+                                    <select id="concessionJobType" name="concessionJobType">
+                                        <option value="">Select Concession Job Type</option>
+                                        <option value="Issue GC by CustomerID">Issue GC by CustomerID</option>
+                                        <option value="Issue GC and Mail by CustomerID">Issue GC and Mail by CustomerID</option>
+                                        <option value="Refund Items 2.0">Refund Items 2.0</option>
+                                        <option value="Refund Items and Mail By OrderID 2.0">Refund Items and Mail By OrderID 2.0</option>
+                                        <option value="Refund Complete Shipment 2.0">Refund Complete Shipment 2.0</option>
+                                        <option value="Refund Complete Shipment and Mail By OrderID 2.0">Refund Complete Shipment and Mail By OrderID 2.0</option>
+                                        <option value="Refund Retrocharge by RetrochargeID">Refund Retrocharge by RetrochargeID</option>
+                                        <option value="Refund E-GCs 2.0">Refund E-GCs 2.0</option>
+                                        <option value="Refund E-GCs and Mail By OrderID 2.0">Refund E-GCs and Mail By OrderID 2.0</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="amountIssued">Amount Issued in USD <span class="required">*</span></label>
+                                    <input type="number" id="amountIssued" name="amountIssued" min="0" step="0.01" placeholder="0.00">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SYSKA Section -->
+                    <div class="form-section">
+                        <h3 class="section-title">SYSKA Information</h3>
+                        <div class="form-group">
+                            <label for="syska">SYSKA <span class="required">*</span></label>
+                            <select id="syska" name="syska" required onchange="toggleSyskaFields()">
+                                <option value="">Select Option</option>
+                                <option value="Yes">Yes</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+
+                        <!-- Fields that appear when "Yes" is selected -->
+                        <div class="syska-fields" id="syskaFields">
+                            <div class="form-row-2">
+                                <div class="form-group">
+                                    <label for="syskaId">SYSKA ID <span class="required">*</span></label>
+                                    <input type="text" id="syskaId" name="syskaId" placeholder="Enter SYSKA ID">
+                                </div>
+                                <div class="form-group">
+                                    <label for="numberOfRecords">Number of Records <span class="required">*</span></label>
+                                    <input type="number" id="numberOfRecords" name="numberOfRecords" min="0" placeholder="0">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="submit-btn">💾 Submit SIM Record</button>
+                </form>
+            </div>
+
+            <!-- Admin Tab -->
+            <div id="admin-tab" class="tab-panel">
+                <div class="admin-header">
+                    <h1>📊 SIM Records Dashboard</h1>
+                    <div class="admin-controls">
+                        <button class="export-btn" onclick="exportToCSV()">📥 Export CSV</button>
+                        <button class="clear-data-btn" onclick="clearAllData()">🗑️ Clear All Data</button>
+                    </div>
+                </div>
+
+                <div class="admin-stats">
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalSubmissions">0</div>
+                        <div class="stat-label">Total SIM Records</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalSuccessRecords">0</div>
+                        <div class="stat-label">Total Success Records</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalFailedRecords">0</div>
+                        <div class="stat-label">Total Failed Records</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalBusinessImpact">$0</div>
+                        <div class="stat-label">Total Business Impact (USD)</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number" id="totalSavings">$0</div>
+                        <div class="stat-label">Total Savings (USD)</div>
+                    </div>
+                </div>
+
+                <div class="no-data-message" id="noDataMessage">
+                    📊 No SIM records found. Submit your first record using the form above to see statistics here.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Clear all data on page load to ensure fresh start
+        window.addEventListener('load', function() {
+            localStorage.removeItem('simSubmissions');
+            loadSubmissions();
+        });
+
+        // Function to format date from yyyy-mm-dd to mm/dd/yyyy for display
+        function formatDateToMMDDYYYY(dateString) {
+            if (!dateString) return '';
+            const date = new Date(dateString + 'T00:00:00');
+            return date.toLocaleDateString('en-US');
+        }
+
+        // Toggle Price Error Fields
+        function togglePriceErrorFields() {
+            const priceErrorSelect = document.getElementById('priceError');
+            const priceErrorFields = document.getElementById('priceErrorFields');
+            const fields = priceErrorFields.querySelectorAll('input, select');
+            
+            if (priceErrorSelect.value === 'Yes') {
+                priceErrorFields.classList.add('show');
+                fields.forEach(field => {
+                    field.required = true;
+                });
+            } else {
+                priceErrorFields.classList.remove('show');
+                fields.forEach(field => {
+                    field.required = false;
+                    field.value = '';
+                });
+            }
+        }
+
+        // Toggle SYSKA Fields
+        function toggleSyskaFields() {
+            const syskaSelect = document.getElementById('syska');
+            const syskaFields = document.getElementById('syskaFields');
+            const fields = syskaFields.querySelectorAll('input, select');
+            
+            if (syskaSelect.value === 'Yes') {
+                syskaFields.classList.add('show');
+                fields.forEach(field => {
+                    field.required = true;
+                });
+            } else {
+                syskaFields.classList.remove('show');
+                fields.forEach(field => {
+                    field.required = false;
+                    field.value = '';
+                });
+            }
+        }
+
+        // Toggle Concessions Fields
+        function toggleConcessionsFields() {
+            const concessionsSelect = document.getElementById('concessions');
+            const concessionsFields = document.getElementById('concessionsFields');
+            const fields = concessionsFields.querySelectorAll('input, select');
+            
+            if (concessionsSelect.value === 'Yes') {
+                concessionsFields.classList.add('show');
+                fields.forEach(field => {
+                    field.required = true;
+                });
+            } else {
+                concessionsFields.classList.remove('show');
+                fields.forEach(field => {
+                    field.required = false;
+                    field.value = '';
+                });
+            }
+        }
+
+        // Clear all data function
+        function clearAllData() {
+            if (confirm('⚠️ WARNING: This will permanently delete ALL SIM records!\n\nThis action cannot be undone. Are you sure you want to continue?')) {
+                if (confirm('🔴 FINAL CONFIRMATION: Delete all data permanently?')) {
+                    localStorage.removeItem('simSubmissions');
+                    loadSubmissions();
+                    
+                    // Show success message
+                    const adminHeader = document.querySelector('.admin-header h1');
+                    const originalText = adminHeader.textContent;
+                    adminHeader.textContent = '✅ All Data Cleared Successfully!';
+                    adminHeader.style.color = '#2ed573';
+                    
+                    setTimeout(() => {
+                        adminHeader.textContent = originalText;
+                        adminHeader.style.color = '';
+                    }, 3000);
+                }
+            }
+        }
+
+        // Tab switching functionality
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab-panel').forEach(panel => {
+                panel.classList.remove('active');
+            });
+            
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            document.getElementById(tabName + '-tab').classList.add('active');
+            event.target.classList.add('active');
+            
+            if (tabName === 'admin') {
+                loadSubmissions();
+            }
+        }
+
+        // Form submission handling
+        document.getElementById('simForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Add loading state
+            const submitBtn = document.querySelector('.submit-btn');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<div class="loading"></div>Submitting...';
+            submitBtn.disabled = true;
+            
+            setTimeout(() => {
+                const formData = new FormData(this);
+                const submission = {
+                    id: Date.now(),
+                    simId: formData.get('simId'),
+                    severity: formData.get('severity'),
+                    ou: formData.get('ou'),
+                    loginIdResolver: formData.get('loginIdResolver'),
+                    dateCreated: formData.get('dateCreated'),
+                    resolveDate: formData.get('resolveDate'),
+                    priceError: formData.get('priceError'),
+                    promotionalPricingError: formData.get('promotionalPricingError') || 'N/A',
+                    pricingErrorDate: formData.get('pricingErrorDate') || 'N/A',
+                    singleMultipleAsins: formData.get('singleMultipleAsins') || 'N/A',
+                    totalOrders: formData.get('totalOrders') || '0',
+                    totalUnits: formData.get('totalUnits') || '0',
+                    cancelledUnits: formData.get('cancelledUnits') || '0',
+                    businessImpact: formData.get('businessImpact') || '0.00',
+                    totalRecords: formData.get('totalRecords'),
+                    successRecords: formData.get('successRecords'),
+                    customersNotified: formData.get('customersNotified'),
+                    failedRecords: formData.get('failedRecords'),
+                    savingsUsd: formData.get('savingsUsd') || '0.00',
+                    unSideline: formData.get('unSideline'),
+                    inEfPriceError: formData.get('inEfPriceError') || 'N/A',
+                    jobType: formData.get('jobType'),
+                    concessions: formData.get('concessions'),
+                    concessionJobType: formData.get('concessionJobType') || 'N/A',
+                    amountIssued: formData.get('amountIssued') || '0.00',
+                    syska: formData.get('syska'),
+                    syskaId: formData.get('syskaId') || 'N/A',
+                    numberOfRecords: formData.get('numberOfRecords') || '0',
+                    submissionTime: new Date().toISOString(),
+                    submissionDate: new Date().toLocaleDateString()
+                };
+                
+                let submissions = JSON.parse(localStorage.getItem('simSubmissions')) || [];
+                submissions.unshift(submission);
+                localStorage.setItem('simSubmissions', JSON.stringify(submissions));
+                
+                document.getElementById('successMessage').style.display = 'block';
+                document.getElementById('errorMessage').style.display = 'none';
+                
+                this.reset();
+                // Reset the conditional fields visibility
+                document.getElementById('priceErrorFields').classList.remove('show');
+                document.getElementById('syskaFields').classList.remove('show');
+                document.getElementById('concessionsFields').classList.remove('show');
+                
+                // Reset button
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                
+                window.scrollTo(0, 0);
+                
+                console.log('SIM record submitted successfully:', submission);
+            }, 1500);
+        });
+
+        // Load and display submissions
+        function loadSubmissions() {
+            const submissions = JSON.parse(localStorage.getItem('simSubmissions')) || [];
+            const noDataMessage = document.getElementById('noDataMessage');
+            
+            // Show/hide no data message
+            if (submissions.length === 0) {
+                noDataMessage.style.display = 'block';
+            } else {
+                noDataMessage.style.display = 'none';
+            }
+            
+            // Update stats with animation
+            document.getElementById('totalSubmissions').textContent = submissions.length;
+            
+            // Calculate totals
+            let totalSuccess = 0;
+            let totalFailed = 0;
+            let totalBusinessImpact = 0;
+            let totalSavings = 0;
+            
+            submissions.forEach(sub => {
+                totalSuccess += parseInt(sub.successRecords) || 0;
+                totalFailed += parseInt(sub.failedRecords) || 0;
+                totalBusinessImpact += parseFloat(sub.businessImpact) || 0;
+                totalSavings += parseFloat(sub.savingsUsd) || 0;
+            });
+            
+            // Animate numbers
+            animateNumber('totalSuccessRecords', totalSuccess);
+            animateNumber('totalFailedRecords', totalFailed);
+            animateNumber('totalBusinessImpact', totalBusinessImpact, true);
+            animateNumber('totalSavings', totalSavings, true);
+        }
+
+        // Animate number counting
+        function animateNumber(elementId, targetValue, isCurrency = false) {
+            const element = document.getElementById(elementId);
+            const startValue = 0;
+            const duration = 2000;
+            const increment = targetValue / (duration / 16);
+            let currentValue = startValue;
+            
+            const timer = setInterval(() => {
+                currentValue += increment;
+                if (currentValue >= targetValue) {
+                    currentValue = targetValue;
+                    clearInterval(timer);
+                }
+                
+                if (isCurrency) {
+                    element.textContent = '$' + currentValue.toLocaleString(undefined, {
+                        minimumFractionDigits: 2, 
+                        maximumFractionDigits: 2
+                    });
+                } else {
+                    element.textContent = Math.floor(currentValue).toLocaleString();
+                }
+            }, 16);
+        }
+
+        function formatDate(isoString) {
+            const date = new Date(isoString);
+            return date.toLocaleString('en-US');
+        }
+
+        function exportToCSV() {
+            const submissions = JSON.parse(localStorage.getItem('simSubmissions')) || [];
+            
+            if (submissions.length === 0) {
+                alert('📊 No SIM records to export.\n\nPlease submit some records first, then try exporting again.');
+                return;
+            }
+            
+            // Add loading state to export button
+            const exportBtn = document.querySelector('.export-btn');
+            const originalText = exportBtn.innerHTML;
+            exportBtn.innerHTML = '<div class="loading"></div>Exporting...';
+            exportBtn.disabled = true;
+            
+            setTimeout(() => {
+                const headers = [
+                    'SIM ID', 'Severity', 'OU', 'Login ID Resolver', 'Date Created', 'Resolve Date', 'Price Error',
+                    'Promotional Pricing Error', 'Pricing Error Date', 'Single/Multiple ASINs', 'Total Orders',
+                    'Total Units', 'Cancelled Units', 'Business Impact (USD)', 'Total Records',
+                    'Success Records', 'Customers Notified', 'Failed Records', 'Savings (USD)', 
+                    'Un-Sideline', 'IN EF Price Error', 'Job Type', 'Concessions', 'Concession Job Type',
+                    'Amount Issued (USD)', 'SYSKA', 'SYSKA ID', 'Number of Records', 'Submission Time'
+                ];
+                
+                const csvContent = [
+                    headers.join(','),
+                    ...submissions.map(sub => [
+                        `"${sub.simId}"`, `"${sub.severity}"`, `"${sub.ou}"`, `"${sub.loginIdResolver}"`,
+                        `"${formatDateToMMDDYYYY(sub.dateCreated)}"`, `"${formatDateToMMDDYYYY(sub.resolveDate)}"`, 
+                        `"${sub.priceError}"`, `"${sub.promotionalPricingError}"`, `"${formatDateToMMDDYYYY(sub.pricingErrorDate)}"`,
+                        `"${sub.singleMultipleAsins}"`, `"${sub.totalOrders}"`, `"${sub.totalUnits}"`, 
+                        `"${sub.cancelledUnits}"`, `"${sub.businessImpact}"`, `"${sub.totalRecords}"`, 
+                        `"${sub.successRecords}"`, `"${sub.customersNotified}"`, `"${sub.failedRecords}"`, 
+                        `"${sub.savingsUsd}"`, `"${sub.unSideline}"`, `"${sub.inEfPriceError}"`, 
+                        `"${sub.jobType}"`, `"${sub.concessions}"`, `"${sub.concessionJobType}"`, 
+                        `"${sub.amountIssued}"`, `"${sub.syska}"`, `"${sub.syskaId}"`, 
+                        `"${sub.numberOfRecords}"`, `"${formatDate(sub.submissionTime)}"`
+                    ].join(','))
+                ].join('\n');
+                
+                const blob = new Blob([csvContent], { type: 'text/csv' });
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.style.display = 'none';
+                a.href = url;
+                a.download = `sim-tracker-records-${new Date().toISOString().split('T')[0]}.csv`;
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(url);
+                document.body.removeChild(a);
+                
+                // Reset button
+                exportBtn.innerHTML = originalText;
+                exportBtn.disabled = false;
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
